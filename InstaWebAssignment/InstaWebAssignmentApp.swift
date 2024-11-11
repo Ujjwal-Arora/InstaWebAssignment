@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct InstaWebAssignmentApp: App {
     @StateObject var vm = SignUpViewModel()
-    
+
     var body: some Scene {
         WindowGroup {
             NavigationStack{
@@ -21,6 +21,9 @@ struct InstaWebAssignmentApp: App {
                 }
             }
             .environmentObject(vm)
+            .onAppear {
+                vm.loadUserFromUserDefaults()
+            }
 
         }
     }

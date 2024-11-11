@@ -24,10 +24,25 @@ class SignUpViewModel: ObservableObject{
 
         do{
             self.user = try await ApiCaller().fetchData(newUser: newUser)
+            
+            saveUserToUserDefaults()
         }catch{
             print("error fetching user : ",error.localizedDescription)
         }
     }
     
+    func saveUserToUserDefaults(){
+        guard let user, let encodedUser = try? JSONEncoder().encode(user) else{return}
+        
+        UserDefaults.standard.set(encodedUser, forKey: "savedUserKey")
+    }
+    func loadUserFromUserDefaults(){
+        guard let encodedUser = UserDefaults.standard.data(forKey: "savedUserKey") else{ return }
+        
+        guard let savedUser = try? JSONDecoder().decode(TempUser.self, from: encodedUser) else{ return }
+        
+        self.user = savedUser
+    
+    }
 
 }
