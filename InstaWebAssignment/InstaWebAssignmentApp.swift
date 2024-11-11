@@ -9,9 +9,19 @@ import SwiftUI
 
 @main
 struct InstaWebAssignmentApp: App {
+    @StateObject var vm = SignUpViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack{
+                if vm.user == nil{
+                    SignUpView()
+                }else{
+                    NextView()
+                }
+            }
+            .environmentObject(vm)
+
         }
     }
 }
