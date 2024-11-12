@@ -16,6 +16,5 @@ enum WebsiteCategory : String, CaseIterable, Codable {
     case food = "Food"
     case furniture = "Furniture"
     case localBusiness = "Local Business"
-    
-    
+        
 }

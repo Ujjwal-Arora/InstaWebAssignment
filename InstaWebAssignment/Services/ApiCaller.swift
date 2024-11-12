@@ -7,12 +7,6 @@
 
 import Foundation
 
-struct TempUser : Codable{
-    var firstName: String
-    var lastName: String
-    var age: Int
-}
-
 class ApiCaller : ObservableObject {
     
     func fetchData(newUser: UserModel) async throws -> TempUser{
